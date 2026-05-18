@@ -1,4 +1,4 @@
-# sparrow
+# sparrow.nvim
 
 <div align="center">
   <img src="sparrow.png" alt="sparrow" width="200">
@@ -30,7 +30,7 @@ Label-based navigation plugins like flash.nvim are great, but sometimes you just
 
 ```lua
 {
-  'SearidangPa/sparrow',
+  'SearidangPa/sparrow.nvim',
   ft = { 'go', 'lua', 'rust', 'zig', 'fish' },
   lazy = true,
   config = function()
@@ -52,7 +52,7 @@ Label-based navigation plugins like flash.nvim are great, but sometimes you just
 
 ```lua
 {
-  'SearidangPa/sparrow',
+  'SearidangPa/sparrow.nvim',
   ft = { 'go', 'lua', 'rust', 'zig', 'fish' },
   config = function()
     local sparrow = require('sparrow')

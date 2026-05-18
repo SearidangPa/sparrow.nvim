@@ -11,7 +11,14 @@ local function get_nearest_function()
 
   local ctx = beaver.enclosing_function(bufnr, row0)
   if not ctx then
-    vim.schedule(function() vim.notify('No function found (or treesitter not ready)', vim.log.levels.WARN) end)
+    vim.schedule(
+      function()
+        vim.notify(
+          'No function found (or treesitter not ready)',
+          vim.log.levels.WARN
+        )
+      end
+    )
     return nil
   end
 
@@ -29,7 +36,8 @@ M.yank_function = function()
     return
   end
 
-  local lines = vim.api.nvim_buf_get_lines(ctx.bufnr, ctx.start_row, ctx.end_row + 1, false)
+  local lines =
+    vim.api.nvim_buf_get_lines(ctx.bufnr, ctx.start_row, ctx.end_row + 1, false)
   local func_text = table.concat(lines, '\n')
   vim.fn.setreg('*', func_text)
 
@@ -42,9 +50,7 @@ M.yank_function = function()
   )
 
   vim.defer_fn(
-    function()
-      vim.api.nvim_buf_clear_namespace(ctx.bufnr, HIGHLIGHT_NS, 0, -1)
-    end,
+    function() vim.api.nvim_buf_clear_namespace(ctx.bufnr, HIGHLIGHT_NS, 0, -1) end,
     100
   )
 
